@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile - Employee Attrition</title>
+    <style>
+        .navbar {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #fff;
+            margin-left: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        .card {
+            background: rgba(255,255,255,0.92);
+            padding: 25px;
+            border-radius: 10px;
+            width: 450px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .profile-row {
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+        .label {
+            font-weight: bold;
+            display: inline-block;
+            width: 120px;
+        }
+    </style>
+</head>
+
+<body style="margin:0; padding:0; font-family: Arial, sans-serif;
+             background: url('https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg') no-repeat center center fixed;
+             background-size: cover;">
+
+<!-- Top Navbar -->
+<div class="navbar">
+    <div>
+        <span style="font-size:20px; font-weight:bold;">Employee Attrition System</span>
+    </div>
+    <div class="nav-links">
+        <a href="/profile">User Profile</a>
+        <a href="/dashboard">Prediction</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<!-- Page Heading -->
+<h1 style="text-align:center; margin-top:30px; color:#ffffff; font-size:34px;
+           text-shadow:0 0 8px rgba(0,0,0,0.8); font-weight:bold;">
+    User Profile
+</h1>
+
+<!-- Profile Card -->
+<div style="display:flex; justify-content:center; align-items:center; height:70vh;">
+    <div class="card">
+        {% if user %}
+            <h2 style="margin-top:0; text-align:center;">Welcome, {{ user.username }} 👋</h2>
+            <hr>
+
+            <div class="profile-row">
+                <span class="label">Username:</span>
+                <span>{{ user.username }}</span>
+            </div>
+
+            <div class="profile-row">
+                <span class="label">Email:</span>
+                <span>{{ user.email }}</span>
+            </div>
+
+            <div class="profile-row">
+                <span class="label">Member ID:</span>
+                <span>#{{ user.id }}</span>
+            </div>
+
+            <hr style="margin:18px 0;">
+
+            <p style="font-size:14px; color:#555; text-align:justify;">
+                This profile is linked to your Employee Attrition Prediction account.
+                You can use the navigation bar above to go to the prediction page or logout safely.
+            </p>
+        {% else %}
+            <h3>No user information found.</h3>
+            <p>Please <a href="/login">login again</a>.</p>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - Employee Attrition Prediction</title>
+    <style>
+        .navbar {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #fff;
+            margin-left: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 1100px;
+            background: rgba(255,255,255,0.9);
+            padding: 20px 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 15px;
+            row-gap: 10px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            font-size: 14px;
+        }
+        .form-group input,
+        .form-group select {
+            padding: 6px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-top: 3px;
+        }
+        .btn-submit {
+            margin-top: 20px;
+            padding: 10px 18px;
+            border-radius: 6px;
+            border: none;
+            background: #007bff;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-submit:hover {
+            background: #0056b3;
+        }
+        .prediction-box {
+            margin-top: 20px;
+            padding: 12px 15px;
+            border-radius: 6px;
+            background: #e2f0d9;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body style="margin:0; padding:0; font-family: Arial, sans-serif;
+             background: url('https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg') no-repeat center center fixed;
+             background-size: cover;">
+
+<!-- NAVIGATION BAR -->
+<div class="navbar">
+    <div>
+        <span style="font-size:20px; font-weight:bold;">Employee Attrition System</span>
+    </div>
+    <div class="nav-links">
+        <a href="/profile">User Profile</a>
+        <a href="/dashboard" style="text-decoration:underline;">Prediction</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<!-- PAGE TITLE -->
+<h1 style="text-align:center; margin-top:20px; color:#ffffff; font-size:35px;
+           text-shadow:0 0 8px rgba(0,0,0,0.8); font-weight:bold;">
+    Employee Attrition Prediction
+</h1>
+
+<!-- PREDICTION CARD -->
+<div class="container">
+    <p style="font-size:14px; color:#555;">
+        Fill the following details to predict whether the employee might leave the job.
+    </p>
+
+    <form method="POST" action="/predict">
+        <div class="form-grid">
+            <!-- ALL INPUT FIELDS SAME AS BEFORE -->
+            <!-- (No change below except removal of user profile box) -->
+
+            <div class="form-group"><label>Age</label><input type="number" name="Age" required></div>
+            <div class="form-group"><label>Business Travel</label>
+                <select name="BusinessTravel" required>
+                    <option value="Rarely">Travel Rarely</option>
+                    <option value="Frequently">Travel Frequently</option>
+                    <option value="No Travel">No Travel</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Daily Rate</label><input type="number" name="DailyRate" required></div>
+            <div class="form-group"><label>Department</label>
+                <select name="Department" required>
+                    <option value="Sales">Sales</option>
+                    <option value="Research & Development">Research & Development</option>
+                    <option value="Human Resources">Human Resources</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Distance From Home</label><input type="number" name="DistanceFromHome" required></div>
+            <div class="form-group"><label>Education (1–5)</label>
+                <select name="Education" required>
+                    <option value="1">1 - Below College</option>
+                    <option value="2">2 - College</option>
+                    <option value="3">3 - Bachelor</option>
+                    <option value="4">4 - Master</option>
+                    <option value="5">5 - Doctor</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Education Field</label>
+                <select name="EducationField" required>
+                    <option value="Life Sciences">Life Sciences</option>
+                    <option value="Medical">Medical</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Technical Degree">Technical Degree</option>
+                    <option value="Human Resources">Human Resources</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Environment Satisfaction (1–4)</label><input type="number" name="EnvironmentSatisfaction" min="1" max="4" required></div>
+            <div class="form-group"><label>Gender</label>
+                <select name="Gender" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Hourly Rate</label><input type="number" name="HourlyRate" required></div>
+            <div class="form-group"><label>Job Involvement (1–4)</label><input type="number" name="JobInvolvement" min="1" max="4" required></div>
+            <div class="form-group"><label>Job Level</label><input type="number" name="JobLevel" required></div>
+            <div class="form-group"><label>Job Role</label>
+                <select name="JobRole" required>
+                    <option value="Sales Executive">Sales Executive</option>
+                    <option value="Research Scientist">Research Scientist</option>
+                    <option value="Laboratory Technician">Laboratory Technician</option>
+                    <option value="Manufacturing Director">Manufacturing Director</option>
+                    <option value="Healthcare Representative">Healthcare Representative</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Sales Representative">Sales Representative</option>
+                    <option value="Human Resources">Human Resources</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Job Satisfaction (1–4)</label><input type="number" name="JobSatisfaction" min="1" max="4" required></div>
+            <div class="form-group"><label>Marital Status</label>
+                <select name="MaritalStatus" required>
+                    <option value="Single">Single</option>
+                    <option value="Married">Married</option>
+                    <option value="Divorced">Divorced</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Monthly Income</label><input type="number" name="MonthlyIncome" required></div>
+            <div class="form-group"><label>Number of Companies Worked In</label><input type="number" name="NumCompaniesWorked" required></div>
+            <div class="form-group"><label>Over Time</label>
+                <select name="OverTime" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Performance Rating</label><input type="number" name="PerformanceRating" min="1" max="4" required></div>
+            <div class="form-group"><label>Relationship Satisfaction (1–4)</label><input type="number" name="RelationshipSatisfaction" min="1" max="4" required></div>
+            <div class="form-group"><label>Stock Option Level (0–3)</label>
+                <select name="StockOptionLevel" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Total Working Years</label><input type="number" name="TotalWorkingYears" required></div>
+            <div class="form-group"><label>Training Times Last Year (0–6)</label>
+                <select name="TrainingTimesLastYear" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Work Life Balance (1–4)</label><input type="number" name="WorkLifeBalance" min="1" max="4" required></div>
+            <div class="form-group"><label>Years At Company</label><input type="number" name="YearsAtCompany" required></div>
+            <div class="form-group"><label>Years In Current Role</label><input type="number" name="YearsInCurrentRole" required></div>
+            <div class="form-group"><label>Years Since Last Promotion</label><input type="number" name="YearsSinceLastPromotion" required></div>
+            <div class="form-group"><label>Years With Current Manager</label><input type="number" name="YearsWithCurrManager" required></div>
+        </div>
+
+        <button type="submit" class="btn-submit">Predict Attrition</button>
+    </form>
+
+    {% if prediction_text %}
+    <div class="prediction-box">
+        {{ prediction_text|safe }}
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>

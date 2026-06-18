@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Employee Attrition</title>
+    <style>
+        .card {
+            background: rgba(255,255,255,0.9);
+            padding: 25px;
+            border-radius: 10px;
+            width: 350px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0 14px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background: #007bff;
+            color: #f8f7f7;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        a {
+            color: #0e0d0d;
+            text-decoration: underline;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body style="margin:0; padding:0; font-family: Arial, sans-serif; 
+             background: url('https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg') no-repeat center center fixed; 
+             background-size: cover;">
+
+<!-- 🔥 Heading Above Card -->
+<h1 style="text-align:center; margin-top:30px; color:rgb(255, 255, 255); font-size:38px; 
+           text-shadow:0 0 8px rgba(0,0,0,0.8); font-weight:bold;">
+    Employee Attrition System
+</h1>
+
+<div style="display:flex; justify-content:center; align-items:center; height:80vh;">
+    <div class="card">
+        <h3 style="text-align:center; margin-top:5px;">Login</h3>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="message" style="background-color:
+                    {% if category == 'success' %}#d4edda
+                    {% elif category == 'danger' %}#f8d7da
+                    {% else %}#d1ecf1{% endif %};
+                    color:#000;">
+                  {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="/login">
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Enter username" required>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter password" required>
+
+            <button type="submit" class="btn">Login</button>
+        </form>
+
+        <p style="text-align:center; margin-top:15px; font-size:14px;">
+            Don't have an account? <a href="/register">Register here</a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
