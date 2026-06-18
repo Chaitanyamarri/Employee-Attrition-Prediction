@@ -3,6 +3,7 @@ Employee Attrition
 ![Attrition-01](https://user-images.githubusercontent.com/53073185/87855289-e83cc300-c934-11ea-991f-59b7eb395eda.png)
 
 image source : vantagecircle
+
 Attrition is the silent killer that can switly disable even the most successful and stable of the organizations in a shockingly spare amount of time.
 Hiring new employees are extremely complex task that requires capital, time and skills.Also new employee costs a lot more than that Persons salary.
 The cost of hiring an employee goes far beyond just paying for their salary to encompass recruiting, training, benefits, and more.
